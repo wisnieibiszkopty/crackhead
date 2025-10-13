@@ -6,4 +6,4 @@ def crackCaesarCipher(message: str):
     cesar = Cesar()
     for i in range(SYMBOLS_LEN):
         decryptedMessage = cesar.decrypt(message, i)
-        print(decryptedMessage)
+        print(f'Key: {i}, message {decryptedMessage}')
