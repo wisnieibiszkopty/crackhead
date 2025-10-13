@@ -14,11 +14,12 @@ def cesar_func():
     elif mode == 'd':
         decryption = cesar.decrypt(message, int(key))
         print(f'decrypted message {decryption}')
-        crackCaesarCipher(decryption)
 
 
 def main():
-    cesar_func()
+    #cesar_func()
+    message = input('message: ')
+    crackCaesarCipher(message)
 
 
 if __name__ == '__main__':
