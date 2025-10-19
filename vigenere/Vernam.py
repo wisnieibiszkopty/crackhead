@@ -1,5 +1,6 @@
 import numpy as np
 from constants import SYMBOLS_PL
+from decorators.decorators import forZipped
 
 
 class Vernam:
@@ -15,16 +16,10 @@ class Vernam:
 
         return ''.join(resultList), ''.join(key)
 
+    @forZipped
+    def decrypt(self, m: str, k: str) -> str:
+        return chr(ord(m) ^ ord(k))
 
-    def decrypt(self, message: str, key: str) -> str:
-        zipped = zip(message, key)
-        resultList = []
-
-        for (m, k) in zipped:
-            decrypted_char = chr(ord(m) ^ ord(k))
-            resultList.append(decrypted_char)
-
-        return ''.join(resultList)
 
     def encryptAlternative(self, message: str) -> str:
         key = np.random.choice(list(SYMBOLS_PL), len(message))
@@ -34,17 +29,11 @@ class Vernam:
         for (m, r) in zipped:
             resultIndex = (SYMBOLS_PL.find(m) ^ SYMBOLS_PL.find(r)) % len(SYMBOLS_PL)
             resList.append(SYMBOLS_PL[resultIndex])
-        outcome = ''.join(resList)
-        return outcome, ''.join(key)
+        return ''.join(resList), ''.join(key)
 
-    def decryptAlternative(self, message: str, key: str) -> str:
-        zipped = zip(message, key)
-        resList = []
-        for (c, r) in zipped:
-            resultIndex = (SYMBOLS_PL.find(c) ^ SYMBOLS_PL.find(r)) % len(SYMBOLS_PL)
-            resList.append(SYMBOLS_PL[resultIndex])
-        outcome = ''.join(resList)
-        return outcome
+    @forZipped
+    def decryptAlternative(self, m: str, k: str) -> str:
+        return SYMBOLS_PL[(SYMBOLS_PL.find(m) ^ SYMBOLS_PL.find(k)) % len(SYMBOLS_PL)]
 
 if __name__ == "__main__":
     vernam = Vernam()
