@@ -1,7 +1,6 @@
 from cesear.Cesar import Cesar
 from constants import SYMBOLS_LEN
 
-
 def crackCaesarCipher(message: str):
     cesar = Cesar()
     for i in range(SYMBOLS_LEN):
