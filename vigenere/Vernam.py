@@ -26,6 +26,26 @@ class Vernam:
 
         return ''.join(resultList)
 
+    def encryptAlternative(self, message: str) -> str:
+        key = np.random.choice(list(SYMBOLS_PL), len(message))
+
+        zipped = zip(message, key)
+        resList = []
+        for (m, r) in zipped:
+            resultIndex = (SYMBOLS_PL.find(m) ^ SYMBOLS_PL.find(r)) % len(SYMBOLS_PL)
+            resList.append(SYMBOLS_PL[resultIndex])
+        outcome = ''.join(resList)
+        return outcome, ''.join(key)
+
+    def decryptAlternative(self, message: str, key: str) -> str:
+        zipped = zip(message, key)
+        resList = []
+        for (c, r) in zipped:
+            resultIndex = (SYMBOLS_PL.find(c) ^ SYMBOLS_PL.find(r)) % len(SYMBOLS_PL)
+            resList.append(SYMBOLS_PL[resultIndex])
+        outcome = ''.join(resList)
+        return outcome
+
 if __name__ == "__main__":
     vernam = Vernam()
 
