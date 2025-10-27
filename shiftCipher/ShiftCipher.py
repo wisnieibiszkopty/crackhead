@@ -1,8 +1,5 @@
 import pyperclip, math
 
-from shiftCipher.shiftCypherCrack import bruteForceShiftCypher
-
-
 class ShiftCipher:
     def run(self):
         message = input('Enter the message: ')
@@ -11,11 +8,11 @@ class ShiftCipher:
 
         if mode == 'e':
             encrypted_message = self.encrypt(message, key)
-            print("Encrypted message: ", encrypted_message)
+            print("Encrypted message:", encrypted_message)
             pyperclip.copy(encrypted_message)
         elif mode == 'd':
             decrypted_message = self.decrypt(message, key)
-            print("Decrypted message: ", decrypted_message)
+            print("Decrypted message:", decrypted_message)
             pyperclip.copy(decrypted_message)
 
     def encrypt(self, message: str, key: int) -> str:

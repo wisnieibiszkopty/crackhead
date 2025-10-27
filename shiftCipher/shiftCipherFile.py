@@ -9,7 +9,7 @@ def shiftCipherFile():
 
     startTime = time.time()
 
-    with open(inputFileName, 'r') as inputFile:
+    with open('files/' + inputFileName, 'r') as inputFile:
         shiftCipher = ShiftCipher()
         encrypted_text = ''
         if mode == 'e':
@@ -17,7 +17,7 @@ def shiftCipherFile():
         elif mode == 'd':
             encrypted_text += shiftCipher.decrypt(inputFile.read(), key)
 
-        with open(outputFileName, 'w') as outputFile:
+        with open('files/' + outputFileName, 'w') as outputFile:
             outputFile.write(encrypted_text)
 
     endTime = time.time()
