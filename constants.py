@@ -1,2 +1,4 @@
 SYMBOLS_PL = 'AĄBCĆDEĘFGHIJKLŁMNŃOÓPRSŚTUWXYZŹŻaąbcćdeęfghijklłmnńoóprsśtuwxyzźż1234567890 !?.'
-SYMBOLS_LEN = len(SYMBOLS_PL)
+SYMBOLS_PL_LEN = len(SYMBOLS_PL)
+
+SYMBOLS_EN = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ \t\n'

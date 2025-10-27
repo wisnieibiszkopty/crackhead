@@ -1,6 +1,6 @@
 import numpy as np
 from constants import SYMBOLS_PL
-from decorators.decorators import forZipped
+from utils.decorators import forZipped
 
 
 class Vernam:

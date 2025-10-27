@@ -1,5 +1,5 @@
 from shiftCipher.ShiftCipher import ShiftCipher
-import time, os, sys
+import time
 
 def shiftCipherFile():
     mode = input('Mode [e/d]: ')
