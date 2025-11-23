@@ -1,8 +1,7 @@
 from constants import SYMBOLS_EN
 
-
 def loadDictionary():
-    with open('files/dictionary.txt', 'r') as file:
+    with open('../utils/files/dictionary.txt', 'r') as file:
         content = file.read()
         contentList = content.split('\n')
 
