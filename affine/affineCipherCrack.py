@@ -27,7 +27,8 @@ def crackAffineCipher(ciphertext: str):
     return None
 
 if __name__ == '__main__':
-    result = crackAffineCipher('XLkkw')
+    # hello works but this not
+    result = crackAffineCipher("V?vIb'6?vthvkbdkIbvw'KbvU4bUv4WvQ'P'4N'v'6v'vyb6DI?vdivCDyy4N'WbvlbI466'AvJWidyP'?4dWvl4W46?byvq'W'vldyy46vq4YdWvw'6v6'4UAv'6v6b'yNwv'WUvyb6NDbvbiidy?6vNdW?4WDbv'WUv'D?wdy4?4b6v?yfv?dvpb?v'4Uv?dvw'yU-w4?v'yb'6HSwbvwDyy4N'WbAvdWbvdiv?wbvPd6?vkdRbyiDIv?dv6?y4Bbv?wbvj'y4GGb'WAvw'6v'I6dvB4IIbUv'?vIb'6?v8ovkbdkIbv4WvC'4?4Avdii4N4'I6v6'4UH")
 
     if result is None:
         print("Próba złamania nie powiodła się.")
