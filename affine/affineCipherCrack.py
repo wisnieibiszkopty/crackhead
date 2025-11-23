@@ -24,11 +24,10 @@ def crackAffineCipher(ciphertext: str):
             if isValid.lower().startswith('y'):
                 return (key, plaintext)
 
-        return None
+    return None
 
 if __name__ == '__main__':
-    # TODO fix
-    result = crackAffineCipher('XLkkw') # hello
+    result = crackAffineCipher('XLkkw')
 
     if result is None:
         print("Próba złamania nie powiodła się.")
