@@ -1,45 +1,35 @@
 def getWordPattern(word: str):
-    word = word.upper()
-    letters = {}
-    result = []
+    lettersList = list(word)
+    cipher = 0
+    ciphersList = [str(cipher)]
 
-    k = 0
-
-    for symbol in word:
-        if symbol not in letters:
-            letters[symbol] = k
-            k += 1
-        result.append(letters[symbol])
-
-    return tuple(result)
+    for i in range(1, len(lettersList)):
+        if word[i] not in lettersList[:i]:
+            cipher += 1
+            ciphersList.append(str(cipher))
+        else:
+            letterIndex = word.find(word[i])
+            letterCipher = ciphersList[letterIndex]
+            ciphersList.append(letterCipher)
+    pattern = ''.join(ciphersList)
+    return pattern
 
 def loadDictionary(path: str):
-    with open(path) as file:
-        patterns = {}
-        content = file.read()
-        wordList = content.split('\n')
+    dictionaryFileObj = open(path)
+    content = dictionaryFileObj.read()
+    contentList = content.split('\n')
+    engslishWordsPatterns = {}
+    for word in contentList:
+        engslishWordsPatterns[word] = getWordPattern(word)
+    dictionaryFileObj.close()
+    return engslishWordsPatterns
 
-        for word in wordList:
-            word = word.strip()
-            if not word:
-                continue
+ENGLISH_WORDS_PATTERNS = loadDictionary('../utils/files/dictionary.txt')
 
-            pattern = getWordPattern(word)
-
-            if pattern not in patterns:
-                patterns[pattern] = []
-
-            patterns[pattern].append(word)
-
-        return patterns
-
-def getWordsFromPattern(word: str, patterns):
-    targetPattern = getWordPattern(word)
-
-    if targetPattern in patterns:
-        return patterns[targetPattern]
-    else:
-        return []
+def getWordsFromPattern(pattern):
+    words = list(filter(lambda k: ENGLISH_WORDS_PATTERNS[k] == pattern,
+                        ENGLISH_WORDS_PATTERNS))
+    return words
 
 if __name__ == '__main__':
     word = "garden"

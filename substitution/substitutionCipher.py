@@ -73,5 +73,5 @@ def automatic():
     print(translated2)
 
 if __name__ == "__main__":
-    #interactive()
-    automatic()
+    interactive()
+    #automatic()

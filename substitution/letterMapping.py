@@ -22,23 +22,54 @@ def getQuasiIntersectedMapping(mapA, mapB):
             letterMapping[letter] = list(setA & setB)
     return letterMapping
 
-def removeSolvedLettersFromMapping(letterMapping):
-    pass
+def createFinalMapping(cipherWords):
+    intersectedMapping = getBlankCipherletterMapping()
+
+    for word in cipherWords:
+        pattern = wp.getWordPattern(word)
+        candidates = wp.getWordsFromPattern(pattern)
+        wordMapping = getBlankCipherletterMapping()
+
+        for c in candidates:
+            updatedWordMapping = addLettersToMapping(wordMapping, word, c)
+            wordMapping = updatedWordMapping
+
+        intersectedMapping = getQuasiIntersectedMapping(intersectedMapping,wordMapping)
+
+    return intersectedMapping
+
+def removeSolvedLettersFromMapping(map):
+    loopAgain = True
+    servedSolvedLetters = []
+
+    while loopAgain:
+        unservedSolvedLetters = list(filter(
+            lambda k: (len(map[k]) == 1) and (k not in servedSolvedLetters),
+            map
+        ))
+
+        if not unservedSolvedLetters:
+            loopAgain = False
+        else:
+            solvedLetter = unservedSolvedLetters[0]
+            respectiveLetter = map[solvedLetter][0]
+
+            for key in map:
+                if (respectiveLetter in map[key]) and (key != solvedLetter):
+                    map[key].remove(respectiveLetter)
+            servedSolvedLetters.append(solvedLetter)
+
+    return map
+
 
 
 if __name__ == "__main__":
-    print(addLettersToMapping(getBlankCipherletterMapping(), 'HGHHU', 'NANNY'))
-
-    cipherWord = "HGHF"
-
-    candidate1 = "THAT"
-    emptyMapping1 = getBlankCipherletterMapping()
-    result1 = addLettersToMapping(emptyMapping1, cipherWord, candidate1)
-
-    candidate2 = "HIGH"
-    emptyMapping2 = getBlankCipherletterMapping()
-    result2 = addLettersToMapping(emptyMapping2, cipherWord, candidate2)
-
-    finalMap = getQuasiIntersectedMapping(result1, result2)
-    print(finalMap)
+    cipher = 'OLQIHXIRCKGNZ PLQRZKBZB MPBKSSIPLC'
+    #cipher = 'TXRR CA'
+    #cipher = 'BANAN TEST TE'
+    cipherWords = cipher.split(' ')
+    mapping = createFinalMapping(cipherWords)
+    print(mapping)
+    letterMap = removeSolvedLettersFromMapping(mapping)
+    print(letterMap)
 
