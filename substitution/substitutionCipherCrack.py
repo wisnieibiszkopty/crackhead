@@ -1,5 +1,4 @@
 import re
-from pydoc import plaintext
 
 import letterMapping as lm
 import wordPattern as wp
@@ -11,9 +10,17 @@ def crackSubstitutionCipher(message):
     intersectedMap = lm.getBlankCipherletterMapping()
     cipherWordList = nonLetterNonSpaceCompiler.sub('', message.upper()).split()
 
+    print(cipherWordList)
+
     for cipherWord in cipherWordList:
         pattern = wp.getWordPattern(cipherWord)
+
+        print(pattern)
+
         candidates = wp.getWordsFromPattern(pattern)
+
+        print(candidates)
+
         initialMap = lm.getBlankCipherletterMapping()
         candidateMap = {}
 
@@ -21,12 +28,18 @@ def crackSubstitutionCipher(message):
             candidateMap = lm.addLettersToMapping(initialMap, cipherWord, candidate)
             initialMap = candidateMap
 
+        print(intersectedMap)
+        print(candidateMap)
         intersectedMap = lm.getQuasiIntersectedMapping(intersectedMap, candidateMap)
 
     return lm.removeSolvedLettersFromMapping(intersectedMap)
 
-def decryptViaCipherletterMapping(message, letterMapping):
+def decryptViaCipherletterMapping(message):
     finalMap = crackSubstitutionCipher(message)
+
+    print('Final map:')
+    print(finalMap)
+
     keyFormatList = ['-']*len(sc.SYMBOLS)
 
     for cipherLetter in finalMap:
@@ -40,9 +53,9 @@ def decryptViaCipherletterMapping(message, letterMapping):
 if __name__ == '__main__':
     # gkwzlsi bfuhs tdaaguks bfuh wga bfuh tdaaguk bfuh hlnalfkdux ylzg fqrgna nzfsg
     # DQNHGYWILREZCKFTJUSAMOBPXV
-    cipherText = 'gkwzlsi bfuhs tdaaguks bfuh wga bfuh tdaaguk bfuh hlnalfkdux ylzg fqrgna nzfsg'
-    letterMapping = crackSubstitutionCipher(cipherText)
-    print(letterMapping)
-    plainttext = decryptViaCipherletterMapping(cipherText, letterMapping)
+    cipherText = 'dallt yagj mjhazy palktca dtca'
+    #cipherText = 'baoop zw lanc ocsakl'
+
+    plainttext = decryptViaCipherletterMapping(cipherText)
 
     print('Plain text: ' + plainttext)

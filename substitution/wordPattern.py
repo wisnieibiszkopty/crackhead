@@ -18,11 +18,11 @@ def loadDictionary(path: str):
     dictionaryFileObj = open(path)
     content = dictionaryFileObj.read()
     contentList = content.split('\n')
-    engslishWordsPatterns = {}
+    englishWordsPatterns = {}
     for word in contentList:
-        engslishWordsPatterns[word] = getWordPattern(word)
+        englishWordsPatterns[word] = getWordPattern(word)
     dictionaryFileObj.close()
-    return engslishWordsPatterns
+    return englishWordsPatterns
 
 ENGLISH_WORDS_PATTERNS = loadDictionary('../utils/files/dictionary.txt')
 
@@ -33,8 +33,8 @@ def getWordsFromPattern(pattern):
 
 if __name__ == '__main__':
     word = "garden"
-    print(getWordPattern(word))
-    englishWordsPatterns = loadDictionary('../utils/files/dictionary.txt')
+    pattern = getWordPattern(word)
+    print(pattern)
 
-    matches = getWordsFromPattern(word, englishWordsPatterns)
+    matches = getWordsFromPattern(pattern)
     print(matches)
