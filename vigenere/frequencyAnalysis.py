@@ -3,7 +3,7 @@ import operator
 from constants import SYMBOLS_EN_UPPER
 
 SYMBOLS = SYMBOLS_EN_UPPER
-ETAOIN = 'ETAOINSHRDLCUMWFGYPBVKJXQZ'
+ETAOIN = 'ETAOINSHRDLUCMFWYPVBGKQJXZ'
 
 def getLetterCount(message):
     return { letter: 0 for letter in SYMBOLS}
@@ -27,13 +27,29 @@ def getFrequencyOrder(message):
             lettersSortedDict.keys()
         ))
 
-        lettersWithThatFreq.sort(key=ETAOIN.find, reverse=True)
+        lettersWithThatFreq.sort(key=ETAOIN.find)
         etaionOrderedSortedList = lettersWithThatFreq + etaionOrderedSortedList
 
     return ''.join(etaionOrderedSortedList)
 
 def getEnglishFrequencyMatchScore(message):
-    pass
+    messageFrequencyOrder = getFrequencyOrder(message)
+    matchScore = 0
+    frequentLetters = ETAOIN[:6]
+    rareLetters = ETAOIN[-6:]
+
+    for letter in messageFrequencyOrder[:6]:
+        if letter in frequentLetters:
+            matchScore += 1
+    for letter in messageFrequencyOrder[-6:]:
+        if letter in rareLetters:
+            matchScore += 1
+
+    return matchScore
+
+
 
 if __name__ == '__main__':
-    print(getFrequencyOrder('jazda'))
+    print(getFrequencyOrder('HELLO WORLD'))
+    print(getEnglishFrequencyMatchScore('one two three four five six seven eight'))
+    # TODO lab 4
