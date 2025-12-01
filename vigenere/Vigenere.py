@@ -1,5 +1,6 @@
-from constants import SYMBOLS_PL, SYMBOLS_LEN
+from constants import SYMBOLS_PL, SYMBOLS_EN
 
+SYMBOLS = SYMBOLS_EN
 
 class Vigenere:
     def run(self, automatic: bool = False, messageInput="", keyInput="", mode="e"):
@@ -20,31 +21,40 @@ class Vigenere:
         return None
 
     def generateKeyReplication(self, message: str, key: str) -> str:
+        #message = message.upper()
+        #key = key.upper()
+
         div = len(message) // len(key)
         mod = len(message) % len(key)
         return key * div + key[0:mod]
 
     def encrypt(self, message: str, keyReplication: str) -> str:
+        #message = message.upper()
+        #keyReplication = keyReplication.upper()
+
         zipped = zip(message, keyReplication)
         resultList = []
 
         for (m, k) in zipped:
-            if m in SYMBOLS_PL:
-                resultIndex = (SYMBOLS_PL.find(m) + SYMBOLS_PL.find(k)) % len(SYMBOLS_PL)
-                resultList.append(SYMBOLS_PL[resultIndex])
+            if m in SYMBOLS:
+                resultIndex = (SYMBOLS.find(m) + SYMBOLS.find(k)) % len(SYMBOLS)
+                resultList.append(SYMBOLS[resultIndex])
             else:
                 resultList.append(m)
 
         return ''.join(resultList)
 
     def decrypt(self, message: str, keyReplication: str) -> str:
+        #message = message.upper()
+        #keyReplication = keyReplication.upper()
+
         zipped = zip(message, keyReplication)
         resultList = []
 
         for (m, k) in zipped:
-            if m in SYMBOLS_PL:
-                resultIndex = (SYMBOLS_PL.find(m) - SYMBOLS_PL.find(k)) % len(SYMBOLS_PL)
-                resultList.append(SYMBOLS_PL[resultIndex])
+            if m in SYMBOLS:
+                resultIndex = (SYMBOLS.find(m) - SYMBOLS.find(k)) % len(SYMBOLS)
+                resultList.append(SYMBOLS[resultIndex])
             else:
                 resultList.append(m)
 
@@ -52,19 +62,21 @@ class Vigenere:
 
 
 if __name__ == "__main__":
+
+
     vigenere = Vigenere()
 
     # user input use case
-    # result = vigenere.run()
-    # print(result)
+    result = vigenere.run()
+    print(result)
 
     # auto encryption and decryption
-    #key = "Vigenere"
-    #message = "War is peace. Freedom is slavery. Ignorance is strength."
-    #keyReplication = vigenere.generateKeyReplication(message, key)
-    #encrypted_message = vigenere.encrypt(message, keyReplication)
-    #decrypted_message = vigenere.decrypt(encrypted_message, keyReplication)
-    #print("Decrypted message: ", decrypted_message)
+    key = "Vigenere"
+    message = "War is peace. Freedom is slavery. Ignorance is strength."
+    keyReplication = vigenere.generateKeyReplication(message, key)
+    encrypted_message = vigenere.encrypt(message, keyReplication)
+    decrypted_message = vigenere.decrypt(encrypted_message, keyReplication)
+    print("Decrypted message: ", decrypted_message)
 
     encrypted_messages = [
         "kzU0e!4U0a2iĘUwżi3Bm832Y",
