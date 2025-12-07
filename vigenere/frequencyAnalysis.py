@@ -2,14 +2,14 @@ import operator
 
 from constants import SYMBOLS_EN_UPPER
 
-SYMBOLS = SYMBOLS_EN_UPPER
+SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 ETAOIN = 'ETAOINSHRDLUCMFWYPVBGKQJXZ'
 
-def getLetterCount(message):
+def getLetterCount():
     return { letter: 0 for letter in SYMBOLS}
 
 def getFrequencyOrder(message):
-    messageDict = getLetterCount(message)
+    messageDict = getLetterCount()
 
     for symbol in message.upper():
         if symbol in SYMBOLS:
@@ -50,6 +50,9 @@ def getEnglishFrequencyMatchScore(message):
 
 
 if __name__ == '__main__':
-    print(getFrequencyOrder('HELLO WORLD'))
-    print(getEnglishFrequencyMatchScore('one two three four five six seven eight'))
+    order = getFrequencyOrder('HELLO WORLD')
+    print(order)
+
+    matchScore = getEnglishFrequencyMatchScore('one two three four five six seven eight nine ten')
+    print(matchScore)
     # TODO lab 4

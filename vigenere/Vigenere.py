@@ -21,17 +21,13 @@ class Vigenere:
         return None
 
     def generateKeyReplication(self, message: str, key: str) -> str:
-        #message = message.upper()
-        #key = key.upper()
+        key = key.upper()
 
         div = len(message) // len(key)
         mod = len(message) % len(key)
         return key * div + key[0:mod]
 
     def encrypt(self, message: str, keyReplication: str) -> str:
-        #message = message.upper()
-        #keyReplication = keyReplication.upper()
-
         zipped = zip(message, keyReplication)
         resultList = []
 
@@ -45,9 +41,6 @@ class Vigenere:
         return ''.join(resultList)
 
     def decrypt(self, message: str, keyReplication: str) -> str:
-        #message = message.upper()
-        #keyReplication = keyReplication.upper()
-
         zipped = zip(message, keyReplication)
         resultList = []
 
