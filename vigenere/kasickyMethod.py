@@ -56,11 +56,17 @@ def getMostCommonFactor(sequencesSpacings: dict[str, list[int]], maxKeyLength: i
 
 def getKasickyExaminationResult(ciphertext: str):
     sequencesSpacings = findSpacingsBetweenRepeatedSequences(ciphertext)
-    commonFactors = getMostCommonFactor(sequencesSpacings)
+    mostCommonFactors = getMostCommonFactor(sequencesSpacings)
+    allLikelyKeyLengths = [factor for factor, count in mostCommonFactors]
+    return allLikelyKeyLengths
 
 if __name__ == '__main__':
-    test = """jwetx osdafhuir dfgiorhk sdaith ldfuhioiosh se txoiht gdfse sda"""
-    sequencesSpacings = findSpacingsBetweenRepeatedSequences(test)
+    ciphertext = """jwetx osdafhuir dfgiorhk sdaith ldfuhioiosh se txoiht gdfse sda"""
+    sequencesSpacings = findSpacingsBetweenRepeatedSequences(ciphertext)
     commonFactors = getMostCommonFactor(sequencesSpacings)
+
     print(sequencesSpacings)
     print(commonFactors)
+
+    allLikelyKeyLengths = getKasickyExaminationResult(ciphertext)
+    print(allLikelyKeyLengths)
