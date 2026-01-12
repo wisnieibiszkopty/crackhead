@@ -55,4 +55,3 @@ if __name__ == '__main__':
 
     matchScore = getEnglishFrequencyMatchScore('one two three four five six seven eight nine ten')
     print(matchScore)
-    # TODO lab 4

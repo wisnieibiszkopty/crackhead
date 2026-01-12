@@ -1,6 +1,6 @@
-from constants import SYMBOLS_PL, SYMBOLS_EN
+from constants import SYMBOLS_PL, SYMBOLS_EN, SYMBOLS_EN_UPPER
 
-SYMBOLS = SYMBOLS_EN
+SYMBOLS = SYMBOLS_EN_UPPER
 
 class Vigenere:
     def run(self, automatic: bool = False, messageInput="", keyInput="", mode="e"):

@@ -38,12 +38,12 @@ def getFactors(number: int, maxKeyLength: int = 16) -> list[int]:
     return factors
 
 
-def getMostCommonFactor(sequencesSpacings: dict[str, list[int]], maxKeyLength: int = 16) ->list[tuple[int, int]]:
+def getMostCommonFactor(sequencesSpacings: dict[str, list[int]]) ->list[tuple[int, int]]:
     sequencesFactors = {}
     for seq, spacings in sequencesSpacings.items():
         factorsList = []
-        for s in spacings:
-            factorsList.extend(getFactors(s, maxKeyLength))
+        for spacing in spacings:
+            factorsList.extend(getFactors(spacing))
         sequencesFactors[seq] = factorsList
 
     factorsCount = {}
@@ -62,6 +62,26 @@ def getKasickyExaminationResult(ciphertext: str):
 
 if __name__ == '__main__':
     ciphertext = """jwetx osdafhuir dfgiorhk sdaith ldfuhioiosh se txoiht gdfse sda"""
+    sequencesSpacings = findSpacingsBetweenRepeatedSequences(ciphertext)
+    commonFactors = getMostCommonFactor(sequencesSpacings)
+
+    print(sequencesSpacings)
+    print(commonFactors)
+
+    allLikelyKeyLengths = getKasickyExaminationResult(ciphertext)
+    print(allLikelyKeyLengths)
+
+    ciphertext = 'mHZWMwSA50CQZHV3CC1TYZZUAHROCR1B3T1JKDL8WTQSLZNwLA55IU5uSPNQXELoWNQIVYFwZHVF2TKMVYLQ1SL43EIE04CQLuuSMw,OSMQVAA5OCfNELgWTJu6QCVNELmQPMSLTOPOTVOCCAP9ZNQ1NUFQPZE9P1VAI5F2JKuWLVVGS\'FOGTRVFIPJu!W2KSA PT1AP9PKKVI L2GJuRYCC2A3LVENELZNwTE,FNCTTR47wHO6V1wGNUFIWZH631AAdYT1wNA0FTGJu ZCJOSL1WR1LR3CKJE55QHOCR5QQTuR4CVNEL"NCZHV3"wUFLXWFKR5FNCTTR47wRI PZCZU9PGw,ELT1w3IUPT1ARVRITJEUFIUAO5PCQLu SMwSO05CKTF36MPZIRWCC1TYZZUAOWFINRu TUGEu'
+    sequencesSpacings = findSpacingsBetweenRepeatedSequences(ciphertext)
+    commonFactors = getMostCommonFactor(sequencesSpacings)
+
+    print(sequencesSpacings)
+    print(commonFactors)
+
+    allLikelyKeyLengths = getKasickyExaminationResult(ciphertext)
+    print(allLikelyKeyLengths)
+
+    ciphertext = 'PPQCAXQVEKGYBNKMAZUYBNGBALJONITSZMJYIMVRAGVOHTVRAUCTKSGDDWUOXITLAZUVAVVRAZCVKBQPIWPOU'
     sequencesSpacings = findSpacingsBetweenRepeatedSequences(ciphertext)
     commonFactors = getMostCommonFactor(sequencesSpacings)
 
