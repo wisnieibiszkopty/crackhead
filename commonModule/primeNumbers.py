@@ -161,7 +161,7 @@ if __name__ == '__main__':
     # print(res)
 
     # it takes while to generate prime for 128
-    primeNumber = generateLargePrime(1024)
+    primeNumber = generateLargePrime(2028)
 
     print('Prime found: ', primeNumber)
     print('Is prime fr:', isPrimeNumber(primeNumber))
